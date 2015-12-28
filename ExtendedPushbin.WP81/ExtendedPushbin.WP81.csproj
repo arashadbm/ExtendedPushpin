@@ -9,8 +9,8 @@
     <ProjectGuid>{BA12A73F-1FEF-48C9-A98B-8121EEF56AA4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExtendedPushbin.WP81</RootNamespace>
-    <AssemblyName>ExtendedPushbin.WP81</AssemblyName>
+    <RootNamespace>ExtendedPushbin</RootNamespace>
+    <AssemblyName>ExtendedPushbin</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
