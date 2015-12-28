@@ -1,0 +1,98 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:ExtendedPushbin.Controls"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <Style TargetType="controls:Pushpin">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Pushpin">
+                    <Grid x:Name="ContentGrid" FlowDirection="LeftToRight" >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="PushPinVisualStates">
+                                <VisualState x:Name="Hidden">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="-90" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="ExpandedPanel" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ExpandedPanel">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="ExpandingPopup">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>False</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Expanded">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ExpandedPanel">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="ExpandingPopup">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="ExpandedPanel">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-90"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+
+
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Ellipse  x:Name="Icon" Width="40" Height="40" Fill="Blue" />
+                        <Popup x:Name="ExpandingPopup" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <StackPanel  x:Name="ExpandedPanel"  Orientation="Vertical" CacheMode="BitmapCache" >
+                                <StackPanel.Projection>
+                                    <PlaneProjection RotationX="-90"/>
+                                </StackPanel.Projection>
+                                <Grid  Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" 
+                                  MinHeight="31" 
+                                  MinWidth="29">
+                                    <!-- Min Width is required , Don't change it-->
+                                    <ContentPresenter x:Name="Presenter" MinWidth="70"
+                                                  ContentTemplate="{TemplateBinding ExpansionTemplate}"
+                                                  Content="{Binding}"
+                                                  FlowDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FlowDirection}" 
+                                                  Margin="4"/>
+                                </Grid>
+                                <Polygon  Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" 
+                                     Points="0,0 20,0 0,30" 
+                                     Width="30" 
+                                     Height="30" 
+                                     HorizontalAlignment="Center"/>
+
+                            </StackPanel>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+</ResourceDictionary>
