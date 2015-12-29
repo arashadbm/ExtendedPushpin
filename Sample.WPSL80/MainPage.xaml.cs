@@ -37,7 +37,6 @@ namespace Sample.WPSL80
 
             if (e.NavigationMode != NavigationMode.Back)
             {
-                ZoomToInitialLocation();
                 AddMarkers();
             }
         }

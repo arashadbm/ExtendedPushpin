@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{49850d75-a606-40b0-b1a2-0b03b482e1d7}" Title="Pushbin WPSL80" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Sample.WPSL80 author" Description="Sample description" Publisher="Sample.WPSL80" PublisherID="{340082ad-f09a-4e1c-83a7-6cc4c1ddbe1f}">
+  <App xmlns="" ProductID="{49850d75-a606-40b0-b1a2-0b03b482e1d7}" Title="Pushpin WPSL80" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Sample.WPSL80 author" Description="Sample description" Publisher="Sample.WPSL80" PublisherID="{340082ad-f09a-4e1c-83a7-6cc4c1ddbe1f}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
