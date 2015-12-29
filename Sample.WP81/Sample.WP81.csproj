@@ -114,9 +114,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExtendedPushbin.WP81\ExtendedPushbin.WP81.csproj">
-      <Project>{BA12A73F-1FEF-48C9-A98B-8121EEF56AA4}</Project>
-      <Name>ExtendedPushbin.WP81</Name>
+    <ProjectReference Include="..\ExtendedPushpin.WINRT81\ExtendedPushpin.WINRT81.csproj">
+      <Project>{FC736F22-C561-474A-AD70-E21F08FFE7CE}</Project>
+      <Name>ExtendedPushpin.WINRT81</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
