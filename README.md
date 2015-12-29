@@ -9,7 +9,7 @@ Extended Pushpin with a floating Tool Tip when user taps on it.
 - Changing default blue icon using ContentTemplate of Pushpin.
 
 ###Status
-Alpha
+Alpha, Still needs some improvements. Check Todo section.
 
 ###Target platforms
 - Windows Phone 8.X Silverlight will use ExtendedPushpin.WPSL80 class library.
@@ -29,6 +29,9 @@ You can find samples for the following platforms:
 The samples show sample of pushpins of Berlin city,
 I have made them as simple as showing the pushpin using codebehind but ofcourse you can use them easily with binding to collections in viewmodel.
 
+###Issues
+- Tooltip is shown over other controls in Page when map isn't taking the whole page.
+Please report any issue you find or contact if you have enhancements, fixes or ideas.
 
 ###Todo
 - Improve offest calculation mechanism used to show the tooltip above the pushpin, check ExpandedPanelLayoutUpdated method.
@@ -36,5 +39,7 @@ I have made them as simple as showing the pushpin using codebehind but ofcourse 
 - Test different templates in both control template and expansion template to make sure it acts correctly.
 - Add Nuget Packages.
 
+###License
+GNU v3, check license file under main repositry.
 
 
