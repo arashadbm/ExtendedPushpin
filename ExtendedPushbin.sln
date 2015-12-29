@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WPSL80", "Sample.WPS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedPushbin.UWP", "ExtendedPushbin.UWP\ExtendedPushbin.UWP.csproj", "{4023F170-17E7-4D88-A20E-A69990AEC3F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WP81", "Sample.WP81\Sample.WP81.csproj", "{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,30 @@ Global
 		{4023F170-17E7-4D88-A20E-A69990AEC3F8}.Release|x64.Build.0 = Release|x64
 		{4023F170-17E7-4D88-A20E-A69990AEC3F8}.Release|x86.ActiveCfg = Release|x86
 		{4023F170-17E7-4D88-A20E-A69990AEC3F8}.Release|x86.Build.0 = Release|x86
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|ARM.ActiveCfg = Debug|ARM
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|ARM.Build.0 = Debug|ARM
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|ARM.Deploy.0 = Debug|ARM
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|x64.Build.0 = Debug|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|x86.ActiveCfg = Debug|x86
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|x86.Build.0 = Debug|x86
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Debug|x86.Deploy.0 = Debug|x86
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|ARM.ActiveCfg = Release|ARM
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|ARM.Build.0 = Release|ARM
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|ARM.Deploy.0 = Release|ARM
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|x64.ActiveCfg = Release|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|x64.Build.0 = Release|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|x64.Deploy.0 = Release|Any CPU
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|x86.ActiveCfg = Release|x86
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|x86.Build.0 = Release|x86
+		{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
