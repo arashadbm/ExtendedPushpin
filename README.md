@@ -9,9 +9,9 @@ Extended Pushpin with a floating Tool Tip when user taps on it.
 - Changing default blue icon using ContentTemplate of Pushpin.
 
 ###Screenshots
-![UWP screenshot](https://raw.githubusercontent.com/arashadm/ExtendedPushpin/blob/master/Images/Pushpin_UWP.JPG "UWP screenshot")
+![UWP screenshot](https://raw.githubusercontent.com/arashadm/ExtendedPushpin/master/Images/Pushpin_UWP.JPG "UWP screenshot")
 
-![Windows phone 8.0 screenshot](https://raw.githubusercontent.com/arashadm/ExtendedPushpin/blob/master/Images/Pushpin_WP80.png "Windows phone 8.0 screenshot")
+![Windows phone 8.0 screenshot](https://raw.githubusercontent.com/arashadm/ExtendedPushpin/master/Images/Pushpin_WP80.png "Windows phone 8.0 screenshot")
 
 ###Status
 Alpha, Still needs some improvements. Check Todo section.
@@ -39,7 +39,7 @@ I have made them as simple as showing the pushpin using codebehind but ofcourse 
 Please report any issue you find or contact if you have enhancements, fixes or ideas.
 
 ###Todo
-- Improve offest calculation mechanism used to show the tooltip above the pushpin, check ExpandedPanelLayoutUpdated method.
+- Improve offset calculation mechanism used to show the tooltip above the pushpin, check ExpandedPanelLayoutUpdated method.
 - Fix Tooltip is shown over other controls in Page when map isn't taking the whole page.
 - Test different templates in both control template and expansion template to make sure it acts correctly.
 - Add Nuget Packages.
