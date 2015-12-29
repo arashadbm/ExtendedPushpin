@@ -1,7 +1,6 @@
-﻿
-using Windows.Devices.Geolocation;
+﻿using Windows.Devices.Geolocation;
 
-namespace Sample.WP81.Models
+namespace Sample.Models
 {
     public class Marker
     {

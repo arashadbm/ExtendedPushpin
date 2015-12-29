@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Windows.Devices.Geolocation;
-using Sample.WP81.Models;
+using Sample.Models;
 
-namespace Sample.WP81.DataSource
+namespace Sample.DataSource
 {
     public class MarkersSource
     {

@@ -6,10 +6,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Navigation;
 using ExtendedPushbin.Controls;
-using Sample.WP81.DataSource;
-using Sample.WP81.Models;
+using Sample.DataSource;
+using Sample.Models;
 
-namespace Sample.WP81
+namespace Sample
 {
 
     public sealed partial class MainPage : Page
