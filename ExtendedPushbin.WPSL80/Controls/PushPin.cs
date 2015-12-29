@@ -1,17 +1,29 @@
-﻿using System;
+﻿#if WINDOWS_PHONE
+using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
-
+#else
+using System;
+using Windows.Foundation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Markup;
+#endif
 namespace ExtendedPushbin.Controls
 {
 
     /// <summary>
     /// Represents a pushpin on the map.
     /// </summary>
+#if WINDOWS_PHONE
     [ContentProperty("Content")]
+#else
+    [ContentProperty(Name = "Content")]
+#endif
     [TemplatePart(Name = ExpandedPanelTemplateName, Type = typeof(Panel))]
     [TemplatePart(Name = IconPresenterTemplateName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = ExpandingPopupName, Type = typeof(Popup))]
@@ -78,7 +90,11 @@ namespace ExtendedPushbin.Controls
         #endregion
 
         #region Methods
+#if WINDOWS_PHONE
         public override void OnApplyTemplate()
+#else
+        protected override void OnApplyTemplate()
+#endif
         {
             base.OnApplyTemplate();
 
@@ -93,7 +109,11 @@ namespace ExtendedPushbin.Controls
             if (_iconPresenter != null)
             {
                 //Listen for Ellipse Tap to expand pushpin tooltip
-                _iconPresenter.Tap += IconPresenterTap;
+#if WINDOWS_PHONE
+        _iconPresenter.Tap += IconPresenterTap;
+#else
+                _iconPresenter.Tapped += IconPresenterTap;
+#endif
             }
             //Set initial state to Hidden
             VisualStateManager.GoToState(this, HiddenStateName, false);
@@ -104,7 +124,11 @@ namespace ExtendedPushbin.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void IconPresenterTap(object sender, System.Windows.Input.GestureEventArgs e)
+#if WINDOWS_PHONE
+private void IconPresenterTap(object sender, System.Windows.Input.GestureEventArgs e)
+#else
+        private void IconPresenterTap(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+#endif
         {
             //if(!IsExpanded)
             {
@@ -157,7 +181,11 @@ namespace ExtendedPushbin.Controls
             }
         }
 
-        private void ExpandedPanelLayoutUpdated(object sender, EventArgs e)
+#if WINDOWS_PHONE
+private void ExpandedPanelLayoutUpdated(object sender, EventArgs e)
+#else
+        private void ExpandedPanelLayoutUpdated(object sender, System.Object e)
+#endif
         {
             //Debug.WriteLine("AW:" + _expandedPanel.ActualWidth + "_ AC:" + _expandedPanel.ActualHeight);
 

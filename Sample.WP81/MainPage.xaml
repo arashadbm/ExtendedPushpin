@@ -7,9 +7,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    >
+    <Page.Resources>
+        <!--Used in code behind as template of pushpin tooltip expansion-->
+        <DataTemplate x:Key="PushExpansionTemplate">
+            <StackPanel >
+                <TextBlock Foreground="White" Margin="12">
+                	<Run Foreground="#FF877C7C" FontSize="24" Text="{Binding Name}"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
     <Grid>
-        <maps:MapControl  x:Name="MyMap" LandmarksVisible="True"    />
+        
+        <maps:MapControl  x:Name="MyMap" LandmarksVisible="True" Loaded="MapLoaded" MapTapped="MapTapped"  />
     </Grid>
 </Page>
