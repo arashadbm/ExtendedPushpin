@@ -151,9 +151,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExtendedPushbin.WPSL80\ExtendedPushbin.WPSL80.csproj">
+    <ProjectReference Include="..\ExtendedPushpin.WPSL80\ExtendedPushpin.WPSL80.csproj">
       <Project>{AECD0B86-BFAE-419C-A840-C240C12036CF}</Project>
-      <Name>ExtendedPushbin.WPSL80</Name>
+      <Name>ExtendedPushpin.WPSL80</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

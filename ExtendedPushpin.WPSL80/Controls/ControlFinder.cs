@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace ExtendedPushbin.Controls
+namespace ExtendedPushpin.Controls
 {
 
     public static class ControlFinder

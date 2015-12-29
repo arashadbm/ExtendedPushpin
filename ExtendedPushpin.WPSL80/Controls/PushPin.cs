@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Markup;
 #endif
-namespace ExtendedPushbin.Controls
+namespace ExtendedPushpin.Controls
 {
 
     /// <summary>

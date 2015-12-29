@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedPushbin.WPSL80", "ExtendedPushbin.WPSL80\ExtendedPushbin.WPSL80.csproj", "{AECD0B86-BFAE-419C-A840-C240C12036CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedPushpin.WPSL80", "ExtendedPushpin.WPSL80\ExtendedPushpin.WPSL80.csproj", "{AECD0B86-BFAE-419C-A840-C240C12036CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WPSL80", "Sample.WPSL80\Sample.WPSL80.csproj", "{49850D75-A606-40B0-B1A2-0B03B482E1D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedPushbin.UWP", "ExtendedPushbin.UWP\ExtendedPushbin.UWP.csproj", "{4023F170-17E7-4D88-A20E-A69990AEC3F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedPushpin.UWP", "ExtendedPushpin.UWP\ExtendedPushpin.UWP.csproj", "{4023F170-17E7-4D88-A20E-A69990AEC3F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.WP81", "Sample.WP81\Sample.WP81.csproj", "{41C24680-0BAA-4EA4-B2FE-14D93EF4499D}"
 EndProject

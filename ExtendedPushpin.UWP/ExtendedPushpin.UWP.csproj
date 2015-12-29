@@ -107,7 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\extendedpushbin.wpsl80\controls\PushPin.cs">
+    <Compile Include="..\ExtendedPushpin.WPSL80\Controls\PushPin.cs">
       <Link>Controls\PushPin.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

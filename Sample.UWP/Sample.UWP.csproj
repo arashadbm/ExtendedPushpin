@@ -132,9 +132,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExtendedPushbin.UWP\ExtendedPushbin.UWP.csproj">
+    <ProjectReference Include="..\ExtendedPushpin.UWP\ExtendedPushpin.UWP.csproj">
       <Project>{4023F170-17E7-4D88-A20E-A69990AEC3F8}</Project>
-      <Name>ExtendedPushbin.UWP</Name>
+      <Name>ExtendedPushpin.UWP</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
