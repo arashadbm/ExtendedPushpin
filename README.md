@@ -8,6 +8,11 @@ Extended Pushpin with a floating Tool Tip when user taps on it.
 - Open Animation is implemented in Xaml, so you can play with it using Styling.
 - Changing default blue icon using ContentTemplate of Pushpin.
 
+###Screenshots
+![UWP screenshot](https://raw.githubusercontent.com/arashadm/ExtendedPushpin/blob/master/Images/Pushpin_UWP.JPG "UWP screenshot")
+
+![Windows phone 8.0 screenshot](https://raw.githubusercontent.com/arashadm/ExtendedPushpin/blob/master/Images/Pushpin_WP80.png "Windows phone 8.0 screenshot")
+
 ###Status
 Alpha, Still needs some improvements. Check Todo section.
 
