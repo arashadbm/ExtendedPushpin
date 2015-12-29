@@ -6,6 +6,13 @@ Extended Pushpin with a floating Tool Tip when user taps on it.
 - Toolip uses popup instead of controlling visibility of hidden grid, 
  which prevents flickering, reposition and other icons hiding part of tooltip. 
 - Open Animation is implemented in Xaml, so you can play with it using Styling.
+- Ability to define Tooltip using the expansionTemplate, Check samples.
+- Only one tooltip is shown at a time, pressing on other tooltips closes the previous tooltip if any before showing new tooltip.
+- To close tooltip when user presses on any empty part of map, you need to simply to add this line on MapTapped event.
+
+  ```
+   if (Pushpin.LastAnimatedPushpin != null) Pushpin.LastAnimatedPushpin.HideExpansion();
+  ```
 - Changing default blue icon using ContentTemplate of Pushpin.
 
 ###Screenshots
