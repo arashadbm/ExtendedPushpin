@@ -80,7 +80,7 @@ namespace Sample.WPSL80
             {
                 //set data template and data context of pushpin expansion template
                 ExpansionTemplate = (DataTemplate)Resources[PushPinTemplateName],
-                DataContext = marker
+                DataContext = marker,
             };
             MapOverlay overlay = new MapOverlay
             {

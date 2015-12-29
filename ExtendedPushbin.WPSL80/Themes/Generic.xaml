@@ -9,6 +9,14 @@
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <!---Default ContentTemplate is Ellipse-->
+                    <Ellipse  x:Name="Icon" Width="40" Height="40" Fill="Blue" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Pushpin">
@@ -17,15 +25,15 @@
                             <VisualStateGroup x:Name="PushPinVisualStates">
                                 <VisualState x:Name="Hidden">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="-90" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="ExpandedPanel" />
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ExpandedPanel">
+                                        <DoubleAnimation Duration="0" To="-90" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="PART_ExpandedPanel" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PART_ExpandedPanel">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <Visibility>Collapsed</Visibility>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="ExpandingPopup">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="PART_ExpandingPopup">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <system:Boolean>False</system:Boolean>
@@ -36,7 +44,7 @@
                                 </VisualState>
                                 <VisualState x:Name="Expanded">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ExpandedPanel">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PART_ExpandedPanel">
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <Visibility>Visible</Visibility>
@@ -44,7 +52,7 @@
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
 
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="ExpandingPopup">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Popup.IsOpen)" Storyboard.TargetName="PART_ExpandingPopup">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
                                                     <system:Boolean>True</system:Boolean>
@@ -52,7 +60,7 @@
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
 
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="ExpandedPanel">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="PART_ExpandedPanel">
                                             <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-90"/>
                                             <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
                                         </DoubleAnimationUsingKeyFrames>
@@ -63,9 +71,15 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Ellipse  x:Name="Icon" Width="40" Height="40" Fill="Blue" />
-                        <Popup x:Name="ExpandingPopup" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <StackPanel  x:Name="ExpandedPanel"  Orientation="Vertical" CacheMode="BitmapCache" >
+
+                        <ContentPresenter
+                                    x:Name="PART_IconPresenter"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"
+                                    Margin="{TemplateBinding Padding}" />
+
+                        <Popup x:Name="PART_ExpandingPopup" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <StackPanel  x:Name="PART_ExpandedPanel"  Orientation="Vertical" CacheMode="BitmapCache" >
                                 <StackPanel.Projection>
                                     <PlaneProjection RotationX="-90"/>
                                 </StackPanel.Projection>
@@ -73,7 +87,7 @@
                                   MinHeight="31" 
                                   MinWidth="29">
                                     <!-- Min Width is required , Don't change it-->
-                                    <ContentPresenter x:Name="Presenter" MinWidth="70"
+                                    <ContentPresenter x:Name="PART_ExpandingPresenter" MinWidth="70"
                                                   ContentTemplate="{TemplateBinding ExpansionTemplate}"
                                                   Content="{Binding}"
                                                   FlowDirection="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FlowDirection}" 

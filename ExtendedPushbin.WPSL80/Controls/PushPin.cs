@@ -13,27 +13,28 @@ namespace ExtendedPushbin.Controls
     /// </summary>
     [ContentProperty("Content")]
     [TemplatePart(Name = ExpandedPanelTemplateName, Type = typeof(Panel))]
-    [TemplatePart(Name = IconTemplateName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = IconPresenterTemplateName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = ExpandingPopupName, Type = typeof(Popup))]
-    [TemplatePart(Name = PresenterName, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = ExpandingPresenterName, Type = typeof(ContentPresenter))]
 
     public sealed class Pushpin : ContentControl
     {
         #region Fields
         //Template parts names
-        private const string ExpandedPanelTemplateName = "ExpandedPanel";
-        private const string IconTemplateName = "Icon";
-        private const string ExpandingPopupName = "ExpandingPopup";
-        private const string PresenterName = "Presenter";
+        private const string ExpandedPanelTemplateName = "PART_ExpandedPanel";
+        private const string IconPresenterTemplateName = "PART_IconPresenter";
+        private const string ExpandingPopupName = "PART_ExpandingPopup";
+        private const string ExpandingPresenterName = "PART_ExpandingPresenter";
         //State Names
         private const string HiddenStateName = "Hidden";
         private const string ExpandedStateName = "Expanded";
         //Template Parts
-        private Panel _expandedPanel;
-        private FrameworkElement _icon;
-        private ContentPresenter _presenter;
+        private ContentPresenter _iconPresenter;
+        private ContentPresenter _expandingPresenter;
         public static Pushpin LastAnimatedPushpin;
         private Popup _expandingPopup;
+        private Panel _expandedPanel;
+
 
         #endregion
 
@@ -70,29 +71,29 @@ namespace ExtendedPushbin.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="Pushpin"/> class.
         /// </summary>
-        public Pushpin ()
+        public Pushpin()
         {
             this.DefaultStyleKey = typeof(Pushpin);
         }
         #endregion
 
         #region Methods
-        public override void OnApplyTemplate ()
+        public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
             _expandedPanel = (StackPanel)GetTemplateChild(ExpandedPanelTemplateName);
-            _icon = (FrameworkElement)GetTemplateChild(IconTemplateName);
+            _iconPresenter = (ContentPresenter)GetTemplateChild(IconPresenterTemplateName);
             _expandingPopup = (Popup)GetTemplateChild(ExpandingPopupName);
-            _presenter = (ContentPresenter)GetTemplateChild(PresenterName);
+            _expandingPresenter = (ContentPresenter)GetTemplateChild(ExpandingPresenterName);
 
 
             _expandingPopup.VerticalOffset = 0;
             _expandingPopup.HorizontalOffset = 0;
-            if(_icon != null)
+            if (_iconPresenter != null)
             {
                 //Listen for Ellipse Tap to expand pushpin tooltip
-                _icon.Tap += _icon_Tap;
+                _iconPresenter.Tap += IconPresenterTap;
             }
             //Set initial state to Hidden
             VisualStateManager.GoToState(this, HiddenStateName, false);
@@ -103,7 +104,7 @@ namespace ExtendedPushbin.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void _icon_Tap ( object sender, System.Windows.Input.GestureEventArgs e )
+        private void IconPresenterTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             //if(!IsExpanded)
             {
@@ -116,9 +117,9 @@ namespace ExtendedPushbin.Controls
         /// <summary>
         /// Hide tooltip expansion of pushin.
         /// </summary>
-        public void HideExpansion ()
+        public void HideExpansion()
         {
-            if(_expandedPanel != null)
+            if (_expandedPanel != null)
             {
 
                 VisualStateManager.GoToState(this, HiddenStateName, false);
@@ -129,25 +130,25 @@ namespace ExtendedPushbin.Controls
         /// <summary>
         /// Shows the tooltip expansion of pushpin.
         /// </summary>
-        private void AnimateExpansion ( Point point )
+        private void AnimateExpansion(Point point)
         {
             //Hide previous Pushbin if any
-            if(LastAnimatedPushpin != null) LastAnimatedPushpin.HideExpansion();
+            if (LastAnimatedPushpin != null) LastAnimatedPushpin.HideExpansion();
 
             OnExpanding();
 
             LastAnimatedPushpin = this;
 
-            if(_expandedPanel != null)
+            if (_expandedPanel != null)
             {
                 Canvas.SetLeft(_expandingPopup, point.X);
                 Canvas.SetTop(_expandingPopup, point.Y);
-
+                Canvas.SetZIndex(_expandingPopup, 0);
                 //Unsubscribe to prevent memory leaks due to multiple subscribes
-                _expandedPanel.LayoutUpdated -= _expandedPanel_LayoutUpdated;
+                _expandedPanel.LayoutUpdated -= ExpandedPanelLayoutUpdated;
 
-                //Subscribe to LayoutUpdated event to update margin of _expandedPanel when it's rendered
-                _expandedPanel.LayoutUpdated += _expandedPanel_LayoutUpdated;
+                //Subscribe to LayoutUpdated event to update margin of _PART_ExpandedPanel when it's rendered
+                _expandedPanel.LayoutUpdated += ExpandedPanelLayoutUpdated;
 
                 VisualStateManager.GoToState(this, ExpandedStateName, true);
                 IsExpanded = true;
@@ -156,40 +157,45 @@ namespace ExtendedPushbin.Controls
             }
         }
 
-        private void _expandedPanel_LayoutUpdated ( object sender, EventArgs e )
+        private void ExpandedPanelLayoutUpdated(object sender, EventArgs e)
         {
-            Debug.WriteLine("AW:" + _expandedPanel.ActualWidth + "_ AC:" + _expandedPanel.ActualHeight);
-            double smallOffset = 10;//small offset to make the arrow in the center of ellipse
-           //We need to set negative Margin to shift the tooltip to top and left sides
-            _expandedPanel.Margin = new Thickness((_icon.ActualWidth - _expandedPanel.ActualWidth) / 2 + smallOffset, (_icon.ActualHeight / 2 - _expandedPanel.ActualHeight), 0, 0);
+            //Debug.WriteLine("AW:" + _expandedPanel.ActualWidth + "_ AC:" + _expandedPanel.ActualHeight);
+
+            //small offset to make the arrow in the center of ellipse
+            //We need to set negative Margin to shift the tooltip to top and left sides
+            double smallOffset = 10;
+            _expandedPanel.Margin = new Thickness((_iconPresenter.ActualWidth - _expandedPanel.ActualWidth) / 2 + smallOffset, (_iconPresenter.ActualHeight / 2 - _expandedPanel.ActualHeight), 0, 0);
+            //_expandingPopup.HorizontalOffset = (_iconPresenter.ActualWidth - _expandedPanel.ActualWidth) /2;
+            //_expandingPopup.VerticalOffset = (_iconPresenter.ActualHeight/2 - _expandedPanel.ActualHeight);
 
             //if width is less than 80 supress, 80 = ContentPresenter's( min width + Margin)= 70 +8
             //If it's less to 80 then content presenter didn't render yet
             //TODO:Investigate further
-            if(Math.Abs(_expandedPanel.ActualWidth) < 80 || Math.Abs(_expandedPanel.ActualHeight) < 1e-9) return;
+            if (Math.Abs(_expandedPanel.ActualWidth) < 80 || Math.Abs(_expandedPanel.ActualHeight) < 1e-9) return;
             //Unsubscribe or Layout cycle will happen
-            _expandedPanel.LayoutUpdated -= _expandedPanel_LayoutUpdated;
+            _expandedPanel.LayoutUpdated -= ExpandedPanelLayoutUpdated;
 
         }
 
+        #endregion
+
+        #region Custom Events
         public event EventHandler Expanding;
 
-        private void OnExpanding ()
+        private void OnExpanding()
         {
             var handler = Expanding;
-            if(handler != null) handler(this, EventArgs.Empty);
+            if (handler != null) handler(this, EventArgs.Empty);
         }
 
 
         public event EventHandler Expanded;
 
-        private void OnExpanded ()
+        private void OnExpanded()
         {
             var handler = Expanded;
-            if(handler != null) handler(this, EventArgs.Empty);
+            if (handler != null) handler(this, EventArgs.Empty);
         }
         #endregion
     }
-
-
 }
