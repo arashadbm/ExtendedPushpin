@@ -7,8 +7,8 @@
     <ProjectGuid>{4023F170-17E7-4D88-A20E-A69990AEC3F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExtendedPushbin</RootNamespace>
-    <AssemblyName>ExtendedPushbin</AssemblyName>
+    <RootNamespace>ExtendedPushpin</RootNamespace>
+    <AssemblyName>ExtendedPushpin</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
