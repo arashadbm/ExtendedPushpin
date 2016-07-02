@@ -75,15 +75,18 @@
                                     Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"
                                     Margin="{TemplateBinding Padding}" />
 
-                        <Popup x:Name="PART_ExpandingPopup" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Popup x:Name="PART_ExpandingPopup" 
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               >
+                            <Popup.RenderTransform>
+                                <TranslateTransform X="0" Y="0"/>
+                            </Popup.RenderTransform>
                             <StackPanel  x:Name="PART_ExpandedPanel"  Orientation="Vertical" CacheMode="BitmapCache" >
                                 <StackPanel.Projection>
                                     <PlaneProjection RotationX="-90"/>
                                 </StackPanel.Projection>
-                                <Grid  Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" 
-                                  MinHeight="31" 
-                                  MinWidth="29">
-                                    <!-- Min Width is required , Don't change it-->
+                                <Grid  Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}" >
                                     <ContentPresenter x:Name="PART_ExpandingPresenter" MinWidth="70"
                                                   ContentTemplate="{TemplateBinding ExpansionTemplate}"
                                                   Content="{Binding}"

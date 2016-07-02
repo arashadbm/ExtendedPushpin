@@ -18,7 +18,11 @@
         </DataTemplate>
     </Page.Resources>
     <Grid>
-        
-        <maps:MapControl  x:Name="MyMap" LandmarksVisible="True" Loaded="MapLoaded" MapTapped="MapTapped"  />
+      <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>  
+        <TextBlock Text="Extended Pushpin sample" HorizontalAlignment="Center" Foreground="Black"/>
+        <maps:MapControl Grid.Row="1"  x:Name="MyMap" LandmarksVisible="True" Loaded="MapLoaded" MapTapped="MapTapped"  />
     </Grid>
 </Page>

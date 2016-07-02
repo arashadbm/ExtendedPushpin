@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
+using System.Windows.Media;
+
 #else
 using System;
 using Windows.Foundation;
@@ -12,6 +14,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Markup;
+using Windows.UI.Xaml.Media;
+
 #endif
 namespace ExtendedPushpin.Controls
 {
@@ -168,11 +172,9 @@ private void IconPresenterTap(object sender, System.Windows.Input.GestureEventAr
                 Canvas.SetLeft(_expandingPopup, point.X);
                 Canvas.SetTop(_expandingPopup, point.Y);
                 Canvas.SetZIndex(_expandingPopup, 0);
-                //Unsubscribe to prevent memory leaks due to multiple subscribes
-                _expandedPanel.LayoutUpdated -= ExpandedPanelLayoutUpdated;
 
-                //Subscribe to LayoutUpdated event to update margin of _PART_ExpandedPanel when it's rendered
-                _expandedPanel.LayoutUpdated += ExpandedPanelLayoutUpdated;
+                _expandedPanel.SizeChanged -= _expandedPanel_SizeChanged;
+                _expandedPanel.SizeChanged += _expandedPanel_SizeChanged;
 
                 VisualStateManager.GoToState(this, ExpandedStateName, true);
                 IsExpanded = true;
@@ -181,28 +183,13 @@ private void IconPresenterTap(object sender, System.Windows.Input.GestureEventAr
             }
         }
 
-#if WINDOWS_PHONE
-private void ExpandedPanelLayoutUpdated(object sender, EventArgs e)
-#else
-        private void ExpandedPanelLayoutUpdated(object sender, System.Object e)
-#endif
+        private void _expandedPanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //Debug.WriteLine("AW:" + _expandedPanel.ActualWidth + "_ AC:" + _expandedPanel.ActualHeight);
-
-            //small offset to make the arrow in the center of ellipse
-            //We need to set negative Margin to shift the tooltip to top and left sides
+            var translate = _expandingPopup.RenderTransform as TranslateTransform;
+            if (translate == null) throw new ArgumentNullException(nameof(translate), "TranslateTransform for popup is essential part");
             double smallOffset = 10;
-            _expandedPanel.Margin = new Thickness((_iconPresenter.ActualWidth - _expandedPanel.ActualWidth) / 2 + smallOffset, (_iconPresenter.ActualHeight / 2 - _expandedPanel.ActualHeight), 0, 0);
-            //_expandingPopup.HorizontalOffset = (_iconPresenter.ActualWidth - _expandedPanel.ActualWidth) /2;
-            //_expandingPopup.VerticalOffset = (_iconPresenter.ActualHeight/2 - _expandedPanel.ActualHeight);
-
-            //if width is less than 80 supress, 80 = ContentPresenter's( min width + Margin)= 70 +8
-            //If it's less to 80 then content presenter didn't render yet
-            //TODO:Investigate further
-            if (Math.Abs(_expandedPanel.ActualWidth) < 80 || Math.Abs(_expandedPanel.ActualHeight) < 1e-9) return;
-            //Unsubscribe or Layout cycle will happen
-            _expandedPanel.LayoutUpdated -= ExpandedPanelLayoutUpdated;
-
+            translate.X = (_iconPresenter.ActualWidth - _expandedPanel.ActualWidth) / 2 + smallOffset;
+            translate.Y = (_iconPresenter.ActualHeight / 2 - _expandedPanel.ActualHeight);
         }
 
         #endregion
@@ -225,5 +212,5 @@ private void ExpandedPanelLayoutUpdated(object sender, EventArgs e)
             if (handler != null) handler(this, EventArgs.Empty);
         }
         #endregion
-    }
+    }    
 }
